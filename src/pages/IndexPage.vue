@@ -151,20 +151,13 @@ const { playersList, playerQueue, playerMatches, requiredPlayers } = storeToRefs
 
 // Local UI state
 const showAddPlayerDialog = ref(false)
-const newPlayer = reactive({ name: '', level: 1 })
-
-let nextPlayerId = 1
-let nextMatchId = 1
-
-
-//PLAYER LIST
 const newPlayer = reactive({
   name: '',
   level: 1 as 1 | 2 | 3,
 })
 
-function addPlayerToList() {
-  store.addPlayerToList(newPlayer.name, newPlayer.level)
+async function addPlayerToList() {
+  await store.addPlayerToList(newPlayer.name, newPlayer.level)
   newPlayer.name = ''
   newPlayer.level = 1
   showAddPlayerDialog.value = false
